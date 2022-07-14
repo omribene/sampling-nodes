@@ -27,25 +27,25 @@ class ReachabilityEstimator:
         self.components_layer_num = components_layer_num
         self.observed_reachabilities = []
 
-        if self.method is "greedy":
+        if self.method == "greedy":
             self.node_reachability = self.node_reachability_greedy
-        elif self.method is "absolute":
+        elif self.method == "absolute":
             self.node_reachability = self.node_reachability_absolute
 
     def node_reachability_greedy(self, v: Node, layer_num: int = 2, cap: int = np.inf):
         """
         Computes the version of reachability used in standard SampLayer.
         """
-        if layer_num is 0:
+        if layer_num == 0:
             return 1.
 
-        if layer_num is 1:
+        if layer_num == 1:
             idx = self.high_subgraph.L1_dict[v.index]
             return float(self.high_subgraph.L1_degrees[idx])
 
         # else: layer is at least 2
         neighbors_below = self.neighbor_manager.neighbors_in_layer(v, layer_num - 1)
-        if len(neighbors_below) is 0:
+        if len(neighbors_below) == 0:
             return 0.
 
         total_reach = 0.
@@ -83,9 +83,9 @@ class ReachabilityEstimator:
         """
         Given node and layer, returns the reachability of the node (as computed in the relevant layer).
         """
-        if layer_num is 0:
+        if layer_num == 0:
             raise ValueError("Reachability is meaningless for layer 0.")
-        elif layer_num is 1:
+        elif layer_num == 1:
             return 1.0
         elif layer_num >= self.components_layer_num:
             comp = self.component_collector.component_bfs(node)

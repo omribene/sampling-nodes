@@ -30,10 +30,10 @@ class LayerManager:
         self.load_samples()
 
     def load_samples(self):
-        if self.method is "greedy":
+        if self.method == "greedy":
             self.L1_samples = np.random.choice(a=range(len(self.high_subgraph.L1_list)), p=self.high_subgraph.L1_probs,
                                                size=self.num_L1_samples)
-        elif self.method is "absolute":
+        elif self.method == "absolute":
             self.L1_samples = np.random.choice(a=range(len(self.high_subgraph.L1_list)),
                                                p=self.high_subgraph.L1_L2_probs,
                                                size=self.num_L1_samples)
@@ -54,14 +54,14 @@ class LayerManager:
         assert layer_num > 1
         v = self.sample_from_L1()
 
-        if self.method is "greedy":
+        if self.method == "greedy":
             for i in range(1, layer_num):
                 nbrs_above = list(self.neighbor_manager.neighbors_above(v, i))
                 if not nbrs_above:
                     return None
                 v = random.choice(nbrs_above)
 
-        elif self.method is "absolute":
+        elif self.method == "absolute":
             for i in range(1, layer_num):
                 nbrs_at_least = list(self.neighbor_manager.neighbors_above(v, i - 1))
                 if not nbrs_at_least:
