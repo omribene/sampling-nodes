@@ -1,5 +1,5 @@
 # sampling-nodes
-Source code of the project "Sampling multiple nodes in large networks: Beyond random walks", by Ben-Eliezer, Eden, Oren, and Fotakis (WSDM 2022).
+Source code of the project "Sampling multiple nodes in large networks: Beyond random walks", by Ben-Eliezer, Eden, Oren, and Fotakis (WSDM 2022). See https://arxiv.org/abs/2110.13324 for the full version of the paper.
 
 ## General Notes
 The list of relative network paths, column separators, titles, and directed flags (whether they are directed or not) are listed in the script `src/global.py`. The file is used by both our algorithms and the previous algorithm implementations.
